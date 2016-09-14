@@ -1,0 +1,21 @@
+{
+  "APP": {
+    "BUNGIE": {
+      "API_KEY": "",
+      "API_URL": "http://www.bungie.net/Platform/",
+      "API_PLATFORM": "Destiny"
+    },
+    "SLACK": {
+      "API_KEY": "",
+      "API_URL": "https://slack.com/api",
+      "TWITCH_MONITOR_HOOK": ""
+    },
+    "TWITCH": {
+      "API_KEY": "",
+      "API_URL": "https://api.twitch.tv/kraken"
+    }
+  },
+  "SERVER": {
+    "ALLOWED_ORIGINS": []
+  }
+}

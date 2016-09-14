@@ -6,6 +6,8 @@ After installation, fill out `app.config.json`
 
 To build, run `npm run build` for sourcemaps and `npm run build-deploy` otherwise
 
+Entry point is `dist/server.js`
+
 
 ##A server with a few tricks:##
 

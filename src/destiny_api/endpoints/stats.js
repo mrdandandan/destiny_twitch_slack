@@ -1,5 +1,4 @@
 import {PARAMETERS} from '../constants';
-import buildRequest from '../utils/buildRequest';
 import DestinyApiRequest from '../utils/DestinyApiRequest';
 
 export default {

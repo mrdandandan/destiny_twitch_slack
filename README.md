@@ -33,4 +33,6 @@ Not much here, and only used internally to query for online streams defined in `
 
 * Implement slack integrations for Destiny/Twitch
 
+`//~/slack/[crucible/director/twitch]` for slack command endpoints
+
 _Due to laziness all slack requests currently hard reference membershipType:1_

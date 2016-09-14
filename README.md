@@ -1,6 +1,13 @@
 # mr dandandan's code pile #
 
-A server with a few tricks:
+When cloned, run `npm i`
+
+After installation, fill out `app.config.json`
+
+To build, run `npm run build` for sourcemaps and `npm run build-deploy` otherwise
+
+
+##A server with a few tricks:##
 
 All app constants defined in `app.config.json` including API keys
 

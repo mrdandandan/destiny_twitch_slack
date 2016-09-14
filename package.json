@@ -16,7 +16,7 @@
     "express-cors": "0.0.3",
     "lodash": "^3.10.1",
     "request": "latest",
-    "request-promise": "latest",
+    "request-promise": "latest"
   },
   "devDependencies": {
     "babel": "^6.3.26",

@@ -11,8 +11,8 @@ export default class DestinyApiResponse {
         }
     }
 
-    static error(response) {
-        console.log(err);
-        return err;
+    static error(errorResponse) {
+        console.log(errorResponse);
+        return Promise.reject(errorResponse);
     }
 }

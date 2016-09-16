@@ -40,6 +40,17 @@ const CLASS_HASH = new Enumeration({
     Warlock: 2271682572
 });
 
+const RACE_HASH = new Enumeration({
+    Awoken: 2803282938,
+    Exo: 898834093,
+    Human: 3887404748
+});
+
+const GENDER_HASH = new Enumeration({
+    Male: 3111576190,
+    Female: 2204441813
+});
+
 const PLATFORM = {
     LIVE: 1,
     PSN: 2
@@ -57,10 +68,11 @@ const PARAMETERS = {
     NAME: 'name'
 };
 
-
 export {
     ACTIVITY_MODE,
     CLASS_HASH,
+    RACE_HASH,
+    GENDER_HASH,
     PLATFORM,
     PARAMETERS,
 }

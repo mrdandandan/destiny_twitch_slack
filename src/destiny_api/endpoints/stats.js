@@ -38,6 +38,13 @@ export default {
         path: 'Stats/Definition',
         requiredParameters: []
     }).buildRequest(),
+    getMembershipByDisplayName: new DestinyApiRequest({
+        path: '{membershipType}/Stats/GetMembershipIdByDisplayName/{displayName}',
+        required: [
+            PARAMETERS.MEMBERSHIP_TYPE,
+            PARAMETERS.DISPLAY_NAME
+        ]
+    }).buildRequest(),
     postGameCarnageReport: new DestinyApiRequest({
         path: 'Stats/PostGameCarnageReport/{activityId}',
         requiredParameters: [

@@ -2,7 +2,7 @@ import SlackCommand from '../SlackCommand';
 import SlackMessage from '../SlackMessage';
 import SlackResponse from '../SlackResponse';
 import invalidCommand from './invalid';
-import TwitchMonitor from '../../twitch/TwitchMonitor.';
+import TwitchMonitor from '../../twitch/TwitchMonitor';
 import {APP_CONFIG} from '../../constants';
 
 let config  = require('../../twitch.config.json'),

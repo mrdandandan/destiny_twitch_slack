@@ -25,7 +25,7 @@ export default class Enumeration {
             if(!this.hasOwnProperty(key)) {
                 continue;
             }
-            if(value == this[key]) {
+            if(value === this[key]) {
                 return key;
             }
         }

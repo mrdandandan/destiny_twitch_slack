@@ -14,7 +14,8 @@ Entry point is `dist/server.js`
 All app constants defined in `app.config.json` including API keys
 
 * Wrap Bungie's Destiny API
-Check for implemented destiny api endpoints using:
+
+_Check for implemented destiny api endpoints using:_
 `//~/api/reflect`
 
 Url parameters passed via queryString using `GET` (for now)

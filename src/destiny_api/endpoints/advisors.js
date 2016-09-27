@@ -3,14 +3,14 @@ import DestinyApiRequest from '../utils/DestinyApiRequest';
 
 export default {
     getPublicAdvisors: new DestinyApiRequest({
-        path: 'Advisors',
+        path: `Advisors`,
         requiredParameters: []
     }).buildRequest(),
     getPublicXurVendor: new DestinyApiRequest({
-        path: 'Advisors/Xur',
+        path: `Advisors/Xur`,
         requiredParameters: []
     }).buildRequest(),
     getSpecialEventAdvisors: new DestinyApiRequest({
-        path: 'Events'
+        path: `Events`
     }).buildRequest()
 }

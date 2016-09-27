@@ -3,14 +3,16 @@ import DestinyApiRequest from '../utils/DestinyApiRequest';
 
 export default {
     account: new DestinyApiRequest({
-        path: 'Stats/Account/{membershipType}/{membershipId}',
+        path: `Stats/Account/{${PARAMETERS.MEMBERSHIP_TYPE}}/{${PARAMETERS.MEMBERSHIP_ID}}`,
+        routeBinding: `:${PARAMETERS.MEMBERSHIP_TYPE}/:${PARAMETERS.MEMBERSHIP_ID}`,
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID
         ]
     }).buildRequest(),
     activityHistory: new DestinyApiRequest({
-        path: 'Stats/ActivityHistory/{membershipType}/{membershipId}/{characterId}',
+        path: `Stats/ActivityHistory/{${PARAMETERS.MEMBERSHIP_TYPE}}/{${PARAMETERS.MEMBERSHIP_ID}}/{${PARAMETERS.CHARACTER_ID}}`,
+        routeBinding: `:${PARAMETERS.MEMBERSHIP_TYPE}/:${PARAMETERS.MEMBERSHIP_ID}/:${PARAMETERS.CHARACTER_ID}`,
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID,
@@ -19,7 +21,8 @@ export default {
         ]
     }).buildRequest(),
     aggregateActivityStats: new DestinyApiRequest({
-        path: 'Stats/AggregateActivityStats/{membershipType}/{membershipId}/{characterId}',
+        path: `Stats/AggregateActivityStats/{${PARAMETERS.MEMBERSHIP_TYPE}}/{${PARAMETERS.MEMBERSHIP_ID}}/{${PARAMETERS.CHARACTER_ID}}`,
+        routeBinding: `:${PARAMETERS.MEMBERSHIP_TYPE}/:${PARAMETERS.MEMBERSHIP_ID}/:${PARAMETERS.CHARACTER_ID}`,
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID,
@@ -27,7 +30,8 @@ export default {
         ]
     }).buildRequest(),
     all: new DestinyApiRequest({
-        path: 'Stats/{membershipType}/{membershipId}/{characterId}',
+        path: `Stats/{${PARAMETERS.MEMBERSHIP_TYPE}}/{${PARAMETERS.MEMBERSHIP_ID}}/{${PARAMETERS.CHARACTER_ID}}`,
+        routeBinding: `:${PARAMETERS.MEMBERSHIP_TYPE}/:${PARAMETERS.MEMBERSHIP_ID}/:${PARAMETERS.CHARACTER_ID}`,
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID,
@@ -35,24 +39,27 @@ export default {
         ]
     }).buildRequest(),
     definition: new DestinyApiRequest({
-        path: 'Stats/Definition',
+        path: `Stats/Definition`,
         requiredParameters: []
     }).buildRequest(),
     getMembershipByDisplayName: new DestinyApiRequest({
-        path: '{membershipType}/Stats/GetMembershipIdByDisplayName/{displayName}',
+        path: `{${PARAMETERS.MEMBERSHIP_TYPE}}/Stats/GetMembershipIdByDisplayName/{${PARAMETERS.DISPLAY_NAME}}`,
+        routeBinding: `:${PARAMETERS.MEMBERSHIP_TYPE}/:${PARAMETERS.DISPLAY_NAME}`,
         required: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.DISPLAY_NAME
         ]
     }).buildRequest(),
     postGameCarnageReport: new DestinyApiRequest({
-        path: 'Stats/PostGameCarnageReport/{activityId}',
+        path: `Stats/PostGameCarnageReport/{activityId}`,
+        routeBinding: `:activityId`,
         requiredParameters: [
             PARAMETERS.ACTIVITY_ID
         ]
     }).buildRequest(),
     uniqueWeapons: new DestinyApiRequest({
-        path: 'Stats/UniqueWeapons/{membershipType}/{membershipId}/{characterId}',
+        path: `Stats/UniqueWeapons/{${PARAMETERS.MEMBERSHIP_TYPE}}/{${PARAMETERS.MEMBERSHIP_ID}}/{${PARAMETERS.CHARACTER_ID}}`,
+        routeBinding: `:${PARAMETERS.MEMBERSHIP_TYPE}/:${PARAMETERS.MEMBERSHIP_ID}/:${PARAMETERS.CHARACTER_ID}`,
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID,

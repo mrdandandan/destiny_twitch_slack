@@ -136,12 +136,48 @@ function getStatsFor(slackContext, params) {
         )
     });
     Promise.all(promises)
-        .then(_sortBySkill)
+        .then(players => {
+            return _.sortBy(players, (o) => {
+                return o.aggregateStats.killsDeathsRatio
+            }).reverse();
+        })
         .then(players => {
             if (!generateTeams) {
                 return players;
             }
-            return _buildTeams(players)
+            let alpha = [],
+                bravo = [];
+
+            let isAlpha = true;
+            while (players.length) {
+                let team = isAlpha ? alpha : bravo,
+                    player;
+
+                if (players.length === 2 &&
+                    (
+                        (alpha.length && bravo.length && alpha.length - bravo.length === 0) ||
+                        (!alpha.length && !bravo.length)
+                    )) {
+                    player = players.shift();
+                    player.teamColor = COLOR.BRAVO;
+                    bravo.push(player);
+                    player = players.shift();
+                    player.teamColor = COLOR.ALPHA;
+                    alpha.push(player);
+                    break;
+                }
+
+                player = players.shift();
+                player.teamColor = isAlpha ? COLOR.ALPHA : COLOR.BRAVO;
+                team.push(player);
+                player = players.pop();
+                player.teamColor = isAlpha ? COLOR.ALPHA : COLOR.BRAVO;
+                team.push(player);
+
+                isAlpha = !isAlpha;
+            }
+
+            return alpha.concat(bravo);
         })
         .then(players => {
             let attachments = [];
@@ -311,46 +347,4 @@ function _getActivityModeFromQuery(query) {
             return ACTIVITY_MODE.ThreeVsThree;
     }
     return ACTIVITY_MODE.AllPvP;
-}
-
-function _sortBySkill(players) {
-    return _.sortBy(players, (o) => {
-        return o.aggregateStats.killsDeathsRatio
-    }).reverse();
-}
-
-function _buildTeams(players) {
-    let alpha = [],
-        bravo = [];
-
-    let isAlpha = true;
-    while (players.length) {
-        let team = isAlpha ? alpha : bravo,
-            player;
-
-        if (players.length === 2 &&
-            (
-                (alpha.length && bravo.length && alpha.length - bravo.length === 0) ||
-                (!alpha.length && !bravo.length)
-            )) {
-            player = players.shift();
-            player.teamColor = COLOR.BRAVO;
-            bravo.push(player);
-            player = players.shift();
-            player.teamColor = COLOR.ALPHA;
-            alpha.push(player);
-            break;
-        }
-
-        player = players.shift();
-        player.teamColor = isAlpha ? COLOR.ALPHA : COLOR.BRAVO;
-        team.push(player);
-        player = players.pop();
-        player.teamColor = isAlpha ? COLOR.ALPHA : COLOR.BRAVO;
-        team.push(player);
-
-        isAlpha = !isAlpha;
-    }
-
-    return alpha.concat(bravo);
 }

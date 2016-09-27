@@ -37,8 +37,9 @@ function generateEndpoints(route, endpoints) {
         api[route][endpoint] = {
             method: request.method,
             requiredParameters: request.requiredParameters,
-            path: request.path,
-            routeBinding: request.routeBinding
+            bungiePath: request.path,
+            routeBinding: request.routeBinding,
+            route: `~/api/${route}/${endpoint}/${request.routeBinding}`
         }
     }
 }

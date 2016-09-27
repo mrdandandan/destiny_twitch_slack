@@ -4,6 +4,7 @@ import DestinyApiRequest from '../utils/DestinyApiRequest';
 export default {
     account: new DestinyApiRequest({
         path: 'Stats/Account/{membershipType}/{membershipId}',
+        routeBinding: ':membershipType/:membershipId',
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID
@@ -11,6 +12,7 @@ export default {
     }).buildRequest(),
     activityHistory: new DestinyApiRequest({
         path: 'Stats/ActivityHistory/{membershipType}/{membershipId}/{characterId}',
+        routeBinding: ':membershipType/:membershipId/:characterId',
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID,
@@ -20,6 +22,7 @@ export default {
     }).buildRequest(),
     aggregateActivityStats: new DestinyApiRequest({
         path: 'Stats/AggregateActivityStats/{membershipType}/{membershipId}/{characterId}',
+        routeBinding: ':membershipType/:membershipId/:characterId',
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID,
@@ -28,6 +31,7 @@ export default {
     }).buildRequest(),
     all: new DestinyApiRequest({
         path: 'Stats/{membershipType}/{membershipId}/{characterId}',
+        routeBinding: ':membershipType/:membershipId/:characterId',
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID,
@@ -40,6 +44,7 @@ export default {
     }).buildRequest(),
     getMembershipByDisplayName: new DestinyApiRequest({
         path: '{membershipType}/Stats/GetMembershipIdByDisplayName/{displayName}',
+        routeBinding: ':membershipType/:displayName',
         required: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.DISPLAY_NAME
@@ -47,12 +52,14 @@ export default {
     }).buildRequest(),
     postGameCarnageReport: new DestinyApiRequest({
         path: 'Stats/PostGameCarnageReport/{activityId}',
+        routeBinding: ':activityId',
         requiredParameters: [
             PARAMETERS.ACTIVITY_ID
         ]
     }).buildRequest(),
     uniqueWeapons: new DestinyApiRequest({
         path: 'Stats/UniqueWeapons/{membershipType}/{membershipId}/{characterId}',
+        routeBinding: ':membershipType/:membershipId/:characterId',
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID,

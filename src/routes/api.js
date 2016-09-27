@@ -1,13 +1,13 @@
 import destiny_api from '../destiny_api';
 import {METHOD} from '../constants';
+import _ from 'lodash';
 
 var express = require('express'),
-    url = require('url'),
-    router = express.Router(),
-    api = {};
+    router  = express.Router(),
+    api     = {};
 
-for(var route in destiny_api) {
-    if(!destiny_api.hasOwnProperty(route)) {
+for (var route in destiny_api) {
+    if (!destiny_api.hasOwnProperty(route)) {
         continue;
     }
     api[route] = {};
@@ -19,45 +19,55 @@ router.get('/reflect', (req, res) => {
 });
 
 function generateEndpoints(route, endpoints) {
-    for(var endpoint in endpoints) {
-        if(!endpoints.hasOwnProperty(endpoint)) {
+    for (var endpoint in endpoints) {
+        if (!endpoints.hasOwnProperty(endpoint)) {
             continue;
         }
-        var path = url.resolve('/' + route + '/', endpoint),
-            request = endpoints[endpoint];
+        let request = endpoints[endpoint],
+            path;
 
-        addEndpoint(path, request);
+        if (request.hasOwnProperty('routeBinding')) {
+            path = `/${route}/${endpoint}/${request.routeBinding}`;
+        } else {
+            path = `/${route}/${endpoint}`
+        }
+
+        registerRoute(path, request);
+
         api[route][endpoint] = {
             method: request.method,
             requiredParameters: request.requiredParameters,
-            path: request.path
+            path: request.path,
+            routeBinding: request.routeBinding
         }
     }
 }
 
-function addEndpoint(path, request) {
-    switch(request.method) {
+function registerRoute(path, request) {
+    let methodKey,
+        argsKey;
+
+    switch (request.method) {
         case METHOD.GET:
-            router.get(path, (req, res) => {
-                request(req.query)
-                    .then((response) => {
-                        res.json(response);
-                    })
-                    .catch(error);
-            });
+            methodKey = METHOD.GET.toLowerCase();
+            argsKey = 'query';
             break;
         case METHOD.POST:
-            router.post(path, (req, res) => {
-                request(req.body)
-                    .then((response) => {
-                        res.json(response);
-                    })
-                    .catch(error);
-            });
+            methodKey = METHOD.POST.toLowerCase();
+            argsKey = 'body';
             break;
         default:
             return;
     }
+
+    router[methodKey](path, (req, res) => {
+        let args = {};
+        _.extend(args, req.query || {}, req.body || {}, req.params || {});
+
+        request(args)
+            .then(response => res.json(response))
+            .catch(error);
+    });
 
     var error = (error) => {
         console.log(error);

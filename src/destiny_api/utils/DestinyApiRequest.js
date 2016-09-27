@@ -8,7 +8,7 @@ var request = require('request-promise');
 
 let privateProps = new WeakMap();
 export default class DestinyApiRequest {
-    constructor({path, requiredParameters = [], isPlatformRequest = true, method = METHOD.GET}) {
+    constructor({path, routeBinding, requiredParameters = [], isPlatformRequest = true, method = METHOD.GET}) {
         if (!path) {
             throw 'DestinyApiRequest requires a path to be passed into constructor';
         }
@@ -29,6 +29,7 @@ export default class DestinyApiRequest {
 
         privateProps.set(this, {
             path,
+            routeBinding,
             requiredParameters,
             isPlatformRequest,
             method,
@@ -58,6 +59,10 @@ export default class DestinyApiRequest {
 
     getRequiredParameters() {
         return privateProps.get(this).requiredParameters;
+    }
+
+    getRouteBinding() {
+        return privateProps.get(this).routeBinding;
     }
 
     buildRequest() {
@@ -110,6 +115,7 @@ export default class DestinyApiRequest {
         executeBungieRequest.method = this.getMethod();
         executeBungieRequest.path = this.getPath();
         executeBungieRequest.requiredParameters = this.getRequiredParameters();
+        executeBungieRequest.routeBinding = this.getRouteBinding();
 
         return executeBungieRequest;
     }

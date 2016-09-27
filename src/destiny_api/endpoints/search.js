@@ -3,8 +3,8 @@ import DestinyApiRequest from '../utils/DestinyApiRequest';
 
 export default {
     searchDestinyPlayer: new DestinyApiRequest({
-        path: 'SearchDestinyPlayer/{membershipType}/{displayName}',
-        routeBinding: ':membershipType/:displayName',
+        path: `SearchDestinyPlayer/{${PARAMETERS.MEMBERSHIP_TYPE}}/{${PARAMETERS.DISPLAY_NAME}}`,
+        routeBinding: `:${PARAMETERS.MEMBERSHIP_TYPE}/:${PARAMETERS.DISPLAY_NAME}`,
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.DISPLAY_NAME

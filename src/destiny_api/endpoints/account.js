@@ -3,32 +3,32 @@ import DestinyApiRequest from '../utils/DestinyApiRequest';
 
 export default {
     summary: new DestinyApiRequest({
-        path: '{membershipType}/Account/{membershipId}/Summary',
-        routeBinding: ':membershipType/:membershipId',
+        path: `{${PARAMETERS.MEMBERSHIP_TYPE}}/Account/{${PARAMETERS.MEMBERSHIP_ID}}/Summary`,
+        routeBinding: `:${PARAMETERS.MEMBERSHIP_TYPE}/:${PARAMETERS.MEMBERSHIP_ID}`,
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID
         ]
     }).buildRequest(),
     summary2: new DestinyApiRequest({
-        path: '{membershipType}/Account/{membershipId}',
-        routeBinding: ':membershipType/:membershipId',
+        path: `{${PARAMETERS.MEMBERSHIP_TYPE}}/Account/{${PARAMETERS.MEMBERSHIP_ID}}`,
+        routeBinding: `:${PARAMETERS.MEMBERSHIP_TYPE}/:${PARAMETERS.MEMBERSHIP_ID}`,
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID
         ]
     }).buildRequest(),
     items: new DestinyApiRequest({
-        path: '{membershipType}/Account/{membershipId}/Items',
-        routeBinding: ':membershipType/:membershipId',
+        path: `{${PARAMETERS.MEMBERSHIP_TYPE}}/Account/{${PARAMETERS.MEMBERSHIP_ID}}/Items`,
+        routeBinding: `:${PARAMETERS.MEMBERSHIP_TYPE}/:${PARAMETERS.MEMBERSHIP_ID}`,
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID
         ]
     }).buildRequest(),
     character: new DestinyApiRequest({
-        path: '{membershipType}/Account/{membershipId}/Character/{characterId}',
-        routeBinding: ':membershipType/:membershipId/:characterId',
+        path: `{${PARAMETERS.MEMBERSHIP_TYPE}}/Account/{${PARAMETERS.MEMBERSHIP_ID}}/Character/{${PARAMETERS.CHARACTER_ID}}`,
+        routeBinding: `:${PARAMETERS.MEMBERSHIP_TYPE}/:${PARAMETERS.MEMBERSHIP_ID}/:${PARAMETERS.CHARACTER_ID}`,
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID,
@@ -36,8 +36,8 @@ export default {
         ]
     }).buildRequest(),
     characterActivities: new DestinyApiRequest({
-        path: '{membershipType}/Account/{membershipId}/Character/{characterId}/Activities',
-        routeBinding: ':membershipType/:membershipId/:characterId',
+        path: `{${PARAMETERS.MEMBERSHIP_TYPE}}/Account/{${PARAMETERS.MEMBERSHIP_ID}}/Character/{${PARAMETERS.CHARACTER_ID}}/Activities`,
+        routeBinding: `:${PARAMETERS.MEMBERSHIP_TYPE}/:${PARAMETERS.MEMBERSHIP_ID}/:${PARAMETERS.CHARACTER_ID}`,
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID,
@@ -46,8 +46,8 @@ export default {
     }).buildRequest(),
     // Use summary instead
     characterInventory: new DestinyApiRequest({
-        path: '{membershipType}/Account/{membershipId}/Character/{characterId}/Inventory',
-        routeBinding: ':membershipType/:membershipId/:characterId',
+        path: `{${PARAMETERS.MEMBERSHIP_TYPE}}/Account/{${PARAMETERS.MEMBERSHIP_ID}}/Character/{${PARAMETERS.CHARACTER_ID}}/Inventory`,
+        routeBinding: `:${PARAMETERS.MEMBERSHIP_TYPE}/:${PARAMETERS.MEMBERSHIP_ID}/:${PARAMETERS.CHARACTER_ID}`,
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID,
@@ -55,8 +55,8 @@ export default {
         ]
     }).buildRequest(),
     characterInventorySummary: new DestinyApiRequest({
-        path: '{membershipType}/Account/{membershipId}/Character/{characterId}/Inventory/Summary',
-        routeBinding: ':membershipType/:membershipId/:characterId',
+        path: `{${PARAMETERS.MEMBERSHIP_TYPE}}/Account/{${PARAMETERS.MEMBERSHIP_ID}}/Character/{${PARAMETERS.CHARACTER_ID}}/Inventory/Summary`,
+        routeBinding: `:${PARAMETERS.MEMBERSHIP_TYPE}/:${PARAMETERS.MEMBERSHIP_ID}/:${PARAMETERS.CHARACTER_ID}`,
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID,
@@ -64,8 +64,8 @@ export default {
         ]
     }).buildRequest(),
     characterProgression: new DestinyApiRequest({
-        path: '{membershipType}/Account/{membershipId}/Character/{characterId}/Progression',
-        routeBinding: ':membershipType/:membershipId/:characterId',
+        path: `{${PARAMETERS.MEMBERSHIP_TYPE}}/Account/{${PARAMETERS.MEMBERSHIP_ID}}/Character/{${PARAMETERS.CHARACTER_ID}}/Progression`,
+        routeBinding: `:${PARAMETERS.MEMBERSHIP_TYPE}/:${PARAMETERS.MEMBERSHIP_ID}/:${PARAMETERS.CHARACTER_ID}`,
         requiredParameters: [
             PARAMETERS.MEMBERSHIP_TYPE,
             PARAMETERS.MEMBERSHIP_ID,

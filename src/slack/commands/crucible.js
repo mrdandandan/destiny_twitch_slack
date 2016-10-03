@@ -1,8 +1,8 @@
 import SlackCommand from '../SlackCommand';
 import SlackResponse from '../SlackResponse';
 import invalidCommand from './invalid';
-import bungie from '../../destiny_api';
-import {PLATFORM, ACTIVITY_MODE, GENDER_HASH, RACE_HASH, CLASS_HASH} from '../../destiny_api/constants';
+import bungie from '../../api/destiny';
+import {PLATFORM, ACTIVITY_MODE, GENDER_HASH, RACE_HASH, CLASS_HASH} from '../../api/constants';
 import Convert from '../../utilities/convert';
 
 const COLOR = {

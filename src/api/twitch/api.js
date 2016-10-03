@@ -1,4 +1,4 @@
-import {APP_CONFIG} from '../constants';
+import {APP_CONFIG} from '../../constants';
 let request = require('request-promise');
 
 let uninitializedRequests = [];

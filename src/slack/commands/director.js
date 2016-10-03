@@ -1,9 +1,9 @@
 import SlackCommand from '../SlackCommand';
 import SlackResponse from '../SlackResponse';
 import invalidCommand from './invalid';
-import bungie from '../../destiny_api';
-import {PARAMETERS} from '../../destiny_api/constants';
-import maps from '../../destiny_api/utils/maps';
+import bungie from '../../api/destiny';
+import {PARAMETERS} from '../../api/constants';
+import maps from '../../api/destiny/helpers/maps';
 
 let request = require('request-promise');
 

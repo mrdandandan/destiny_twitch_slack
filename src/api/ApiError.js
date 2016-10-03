@@ -1,8 +1,8 @@
-export default function DestinyApiError(message) {
-    throw new destinyApiError(message);
+export default function apiError(message) {
+    throw new ApiError(message);
 };
 
-function destinyApiError(message) {
+function ApiError(message) {
     Error.call(this);
     Error.captureStackTrace(this, this.constructor);
 

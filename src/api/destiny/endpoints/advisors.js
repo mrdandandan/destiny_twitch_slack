@@ -1,5 +1,5 @@
-import {PARAMETERS} from '../constants';
-import DestinyApiRequest from '../utils/DestinyApiRequest';
+import {PARAMETERS} from '../../constants';
+import DestinyApiRequest from '../DestinyApiRequest';
 
 export default {
     getPublicAdvisors: new DestinyApiRequest({

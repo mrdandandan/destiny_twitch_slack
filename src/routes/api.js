@@ -1,24 +1,38 @@
-import destiny_api from '../destiny_api';
-import {METHOD} from '../constants';
+import destiny from '../api/destiny';
+import gg from '../api/gg';
 import _ from 'lodash';
+import express from 'express';
+import {METHOD} from '../constants';
 
-var express = require('express'),
-    router  = express.Router(),
-    api     = {};
+let router        = express.Router(),
+    api           = {},
+    apiToRegister = [
+        {name: 'destiny', routes: destiny},
+        {name: 'gg', routes: gg}
+    ];
 
-for (var route in destiny_api) {
-    if (!destiny_api.hasOwnProperty(route)) {
-        continue;
-    }
-    api[route] = {};
-    generateEndpoints(route, destiny_api[route]);
+registerEndpoints(apiToRegister);
+export default router;
+
+function registerEndpoints(apiToRegister) {
+    router.get('/reflect', (req, res) => {
+        res.json(api);
+    });
+
+    apiToRegister.forEach(_api => {
+        let currentApi = api[_api.name] = {};
+        for (let route in _api.routes) {
+            if (!_api.routes.hasOwnProperty(route)) {
+                continue;
+            }
+
+            currentApi[route] = {};
+            generateEndpoints(currentApi, _api.name, route, _api.routes[route]);
+        }
+    });
 }
 
-router.get('/reflect', (req, res) => {
-    res.json(api);
-});
-
-function generateEndpoints(route, endpoints) {
+function generateEndpoints(api, baseRoute, route, endpoints) {
     for (var endpoint in endpoints) {
         if (!endpoints.hasOwnProperty(endpoint)) {
             continue;
@@ -27,9 +41,9 @@ function generateEndpoints(route, endpoints) {
             path;
 
         if (request.hasOwnProperty('routeBinding')) {
-            path = `/${route}/${endpoint}/${request.routeBinding}`;
+            path = `/${baseRoute}/${route}/${endpoint}/${request.routeBinding}`;
         } else {
-            path = `/${route}/${endpoint}`
+            path = `/${baseRoute}/${route}/${endpoint}`
         }
 
         registerRoute(path, request);
@@ -37,9 +51,9 @@ function generateEndpoints(route, endpoints) {
         api[route][endpoint] = {
             method: request.method,
             requiredParameters: request.requiredParameters,
-            bungiePath: request.path,
+            externalPath: request.path,
             routeBinding: request.routeBinding,
-            route: `~/api/${route}/${endpoint}/${request.routeBinding}`
+            route: `~/api/${baseRoute}/${route}/${endpoint}/${request.routeBinding}`
         }
     }
 }
@@ -74,5 +88,3 @@ function registerRoute(path, request) {
         console.log(error);
     };
 }
-
-export default router;

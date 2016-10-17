@@ -1,4 +1,4 @@
-import {API} from './api';
+import twitch from 'mrdandandan-twitch-module';
 
 export default class TwitchMonitor {
     constructor(streamers) {
@@ -10,7 +10,7 @@ export default class TwitchMonitor {
             let promises = [],
                 onlineStreams = [];
             this.streamers.forEach(streamer => {
-                promises.push(API.streams(streamer.channel).then((response) => {
+                promises.push(twitch.streams(streamer.channel).then((response) => {
                     response.streamer = streamer;
                     return response;
                 }));

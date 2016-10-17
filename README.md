@@ -14,8 +14,7 @@ Entry point is `dist/server.js`
 All app constants defined in `app.config.json` including API keys
 
 * Wrap Bungie's Destiny API
-
-_Check for implemented destiny api endpoints using:_
+Check for implemented destiny api endpoints using:
 `//~/api/reflect`
 
 Url parameters passed via queryString using `GET` (for now)
@@ -37,3 +36,12 @@ Not much here, and only used internally to query for online streams defined in `
 `//~/slack/[crucible/director/twitch]` for slack command endpoints
 
 _Due to laziness all slack requests currently hard reference membershipType:1_
+
+
+**Depends on api modules/npm packages:**
+
+* [mrdandandan-destiny-api-module](https://github.com/mrdandandan/destiny_api_module) 
+
+* [mrdandandan-gg-api-module](https://github.com/mrdandandan/gg_api_module)
+
+* [mrdandandan-twitch-module](https://github.com/mrdandandan/twitch_module)

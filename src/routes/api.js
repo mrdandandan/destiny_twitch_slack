@@ -1,5 +1,5 @@
-import destiny from '../api/destiny';
-import gg from '../api/gg';
+import destiny from 'mrdandandan-destiny-api-module';
+import gg from 'mrdandandan-gg-api-module';
 import _ from 'lodash';
 import express from 'express';
 import {METHOD} from '../constants';

@@ -1,9 +1,10 @@
 import SlackCommand from '../SlackCommand';
 import SlackResponse from '../SlackResponse';
 import invalidCommand from './invalid';
-import bungie from '../../api/destiny';
-import {PLATFORM, ACTIVITY_MODE, GENDER_HASH, RACE_HASH, CLASS_HASH} from '../../api/constants';
+import bungie from 'mrdandandan-destiny-api-module';
+import {PLATFORM, ACTIVITY_MODE, GENDER_HASH, RACE_HASH, CLASS_HASH} from '../../destiny/constants';
 import Convert from '../../utilities/convert';
+import maps from '../destiny/cruciblemaps';
 
 const COLOR = {
     ALPHA: '#281891',
@@ -17,6 +18,7 @@ let request = require('request-promise');
 
 let crucibleCommand = new SlackCommand();
 crucibleCommand.registerCommandOption(['pgcr', 'carnage'], postGameCarnageReport);
+crucibleCommand.registerCommandOption(['map'], map);
 crucibleCommand.registerCommandOption(['individual', 'stats'], individualStats);
 crucibleCommand.registerCommandOption(['account-stats', 'accountstats', 'playerstats', 'player-stats'], getStatsFor);
 crucibleCommand.registerDefaultAction(invalidCommand);
@@ -214,6 +216,41 @@ function getStatsFor(slackContext, params) {
 
             response.send(true);
         });
+}
+
+function map(slackContext, params) {
+    let listRegex = /-list/g;
+
+    let listEnabled = !!(params.match(listRegex) || []).length;
+
+    let groupingsMatched = params.replace(listRegex, '').split(',').map(grouping => {
+        return grouping.trim();
+    });
+    let groupings = [];
+
+    groupingsMatched.forEach(grouping => {
+        if(grouping.length) {
+            groupings.push(grouping);
+        }
+    });
+    let output = listEnabled ? maps.getFiltered(groupings) : maps.getRandom(groupings);
+
+    let attachment = {
+        title: `In group: ${groupings.length ? groupings.join(' | ') : 'all'}`,
+        text: output instanceof Array ? output.join('\n') : output,
+        mrkdwn_in: [
+            "text",
+            "pretext"
+        ]
+    };
+
+    let response = new SlackResponse(slackContext, {
+        text: `Crucible map`,
+        type: `in_channel`,
+        attachments: [attachment]
+    });
+
+    return response.send(true);
 }
 
 function _getMembershipId(gamerTag, network) {

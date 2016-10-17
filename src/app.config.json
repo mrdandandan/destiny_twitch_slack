@@ -1,12 +1,9 @@
 {
   "APP": {
     "BUNGIE": {
-      "API_KEY": "",
-      "API_URL": "http://www.bungie.net/Platform/",
-      "API_PLATFORM": "Destiny"
+      "API_KEY": ""
     },
     "GG" : {
-      "API_URL" : "https://api.guardian.gg/"
     },
     "SLACK": {
       "API_KEY": "",
@@ -14,11 +11,12 @@
       "TWITCH_MONITOR_HOOK": ""
     },
     "TWITCH": {
-      "API_KEY": "",
-      "API_URL": "https://api.twitch.tv/kraken"
+      "API_KEY": ""
     }
   },
   "SERVER": {
-    "ALLOWED_ORIGINS": []
+    "ALLOWED_ORIGINS": [
+      "localhost:*"
+    ]
   }
 }
